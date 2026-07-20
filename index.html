@@ -111,10 +111,10 @@
   .detail-hero .backbtn svg{ width:14px;height:14px; }
   .detail-hero .backbtn span{ font-size:12px; font-weight:700; color:var(--ink); letter-spacing:0.2px; }
   .hero-text-block{ max-width:64%; }
-  .detail-hero .hero-logo{ position:absolute; top:12px; left:50%; transform:translateX(-50%); background:radial-gradient(ellipse at center, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%); backdrop-filter:blur(10px) saturate(1.3); -webkit-backdrop-filter:blur(10px) saturate(1.3); border-radius:18px; padding:18px 40px; animation:logoPopCentered .7s cubic-bezier(.34,1.56,.64,1) .1s both; -webkit-mask-image:radial-gradient(ellipse at center, black 22%, transparent 92%); mask-image:radial-gradient(ellipse at center, black 22%, transparent 92%); }
+  .detail-hero .hero-logo{ position:absolute; top:12px; left:50%; transform:translateX(-50%); background:radial-gradient(ellipse closest-side at center, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 45%, rgba(255,255,255,0) 88%); backdrop-filter:blur(10px) saturate(1.3); -webkit-backdrop-filter:blur(10px) saturate(1.3); border-radius:18px; padding:22px 48px; animation:logoPopCentered .7s cubic-bezier(.34,1.56,.64,1) .1s both; -webkit-mask-image:radial-gradient(ellipse closest-side at center, black 15%, transparent 78%); mask-image:radial-gradient(ellipse closest-side at center, black 15%, transparent 78%); }
   .detail-hero .hero-logo img{ height:38px; width:auto; display:block; filter: drop-shadow(0 0 2px rgba(255,255,255,0.95)) drop-shadow(0 0 5px rgba(255,255,255,0.85)) drop-shadow(0 0 10px rgba(255,255,255,0.6)) drop-shadow(0 0 18px rgba(255,255,255,0.35)); }
   .detail-hero .cat-line{ font-size:12px; color:#fff; opacity:0.92; font-weight:600; letter-spacing:0.2px; margin-top:3px; text-transform:uppercase; }
-  .detail-hero .title{ font-family:'Fraunces', serif; font-weight:600; font-size:21px; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,0.4); line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .detail-hero .title{ font-family:'Fraunces', serif; font-weight:600; font-size:21px; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,0.4); line-height:1.15; white-space:nowrap; display:inline-block; }
   .detail-hero .dist{ font-size:12px; color:#fff; opacity:0.92; margin-top:3px; font-weight:500; }
 
   .tabbar{ display:flex; padding:0 20px; border-bottom:1px solid var(--line); overflow-x:auto; }
@@ -1443,6 +1443,21 @@ let lightboxIdx = 0;
 let autoplayTimer = null;
 const AUTOPLAY_MS = 3200;
 
+/* Keeps the place title on a single line without ever cutting the name off —
+   shrinks the font size step by step until the full text fits its column. */
+function fitTitleToWidth(el){
+  const maxSize = 21, minSize = 13;
+  let size = maxSize;
+  el.style.fontSize = size + 'px';
+  const container = el.parentElement;
+  let guard = 0;
+  while(el.scrollWidth > container.clientWidth && size > minSize && guard < 20){
+    size -= 1;
+    el.style.fontSize = size + 'px';
+    guard++;
+  }
+}
+
 function openDetail(id, fromPopstate){
   const p = PLACES.find(x=>x.id===id);
   if(!p) return;
@@ -1456,7 +1471,9 @@ function openDetail(id, fromPopstate){
 
   const hero = document.getElementById('detail-hero');
   hero.style.background = `linear-gradient(160deg, ${SWATCH[p.cat]}dd, ${SWATCH[p.cat]})`;
-  document.getElementById('detail-title').textContent = p.name;
+  const titleEl = document.getElementById('detail-title');
+  titleEl.textContent = p.name;
+  fitTitleToWidth(titleEl);
   document.getElementById('detail-dist').textContent = p.id==='octagon' ? p.distLabel : `${p.distLabel} · ${p.timeLabel}`;
   document.getElementById('cat-line').textContent = p.owned ? '★ Your magnet' : CAT_LABEL[p.cat];
 
