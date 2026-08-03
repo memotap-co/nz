@@ -86,7 +86,7 @@
   .list-caption b{ color:var(--accent-deep); font-weight:600; }
 
   /* ---------- LIST ---------- */
-  .place-list{ padding:8px 16px 28px; padding-top:38vh; padding-bottom:42vh; }
+  .place-list{ padding:8px 16px 28px; padding-top:38vh; padding-bottom:42vh; display:flex; flex-direction:column; align-items:center; }
   .place-row{ display:flex; align-items:center; gap:10px; padding:8px; border:1px solid rgba(255,255,255,0.5); border-radius:12px; margin-bottom:16px; cursor:pointer; position:relative; overflow:hidden; transition:transform .12s ease, box-shadow .12s ease, padding .35s cubic-bezier(.4,0,.2,1), margin .35s cubic-bezier(.4,0,.2,1), gap .35s ease, width .35s cubic-bezier(.4,0,.2,1), max-width .35s cubic-bezier(.4,0,.2,1); box-shadow:0 3px 10px rgba(27,36,39,0.06); width:fit-content; max-width:250px; }
   .place-row.expanded{ width:100%; max-width:100%; gap:14px; padding:12px; margin-bottom:14px; box-shadow:0 6px 18px rgba(27,36,39,0.12); }
   .place-thumb{ width:38px; height:38px; border-radius:9px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#FFFFFF; box-shadow:0 2px 6px rgba(27,36,39,0.08); transition:width .35s cubic-bezier(.4,0,.2,1), height .35s cubic-bezier(.4,0,.2,1), border-radius .35s ease; }
