@@ -87,7 +87,12 @@
 
   /* ---------- LIST ---------- */
   .place-list{ padding:8px 16px 28px; }
-  .place-row{ display:flex; align-items:center; gap:14px; padding:12px; border:1px solid rgba(255,255,255,0.5); border-radius:14px; margin-bottom:10px; cursor:pointer; position:relative; overflow:hidden; transition:transform .12s ease, box-shadow .12s ease; box-shadow:0 4px 14px rgba(27,36,39,0.08); }
+  .place-row{ display:flex; align-items:center; gap:10px; padding:8px; border:1px solid rgba(255,255,255,0.5); border-radius:12px; margin-bottom:6px; cursor:pointer; position:relative; overflow:hidden; transition:transform .12s ease, box-shadow .12s ease, padding .35s cubic-bezier(.4,0,.2,1), margin .35s cubic-bezier(.4,0,.2,1), gap .35s ease; box-shadow:0 3px 10px rgba(27,36,39,0.06); }
+  .place-row.expanded{ gap:14px; padding:12px; margin-bottom:10px; box-shadow:0 6px 18px rgba(27,36,39,0.12); }
+  .place-thumb{ width:38px; height:38px; border-radius:9px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#FFFFFF; box-shadow:0 2px 6px rgba(27,36,39,0.08); transition:width .35s cubic-bezier(.4,0,.2,1), height .35s cubic-bezier(.4,0,.2,1), border-radius .35s ease; }
+  .place-row.expanded .place-thumb{ width:64px; height:64px; border-radius:11px; }
+  .thumb-icon svg{ width:18px; height:18px; transition:width .35s ease, height .35s ease; }
+  .place-row.expanded .thumb-icon svg{ width:24px; height:24px; }
   .place-row::before{ content:''; position:absolute; inset:-10px; background-image:var(--bg-photo); background-size:cover; background-position:center top; background-attachment:fixed; filter:blur(16px); z-index:0; }
   .place-row::after{ content:''; position:absolute; inset:0; background:rgba(255,255,255,0.48); z-index:0; }
   .place-row > *{ position:relative; z-index:1; }
@@ -95,16 +100,18 @@
   .place-row.owned{ border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
   .place-row.magnet-highlight{ border-color:var(--accent); box-shadow:0 0 0 2px var(--accent), 0 8px 20px rgba(217,96,31,0.25); animation:magnetPulse 1.8s ease-in-out 2; }
   @keyframes magnetPulse{ 0%,100%{ box-shadow:0 0 0 2px var(--accent), 0 8px 20px rgba(217,96,31,0.25);} 50%{ box-shadow:0 0 0 4px var(--accent), 0 8px 26px rgba(217,96,31,0.4);} }
-  .place-thumb{ width:64px; height:64px; border-radius:11px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#FFFFFF; box-shadow:0 2px 6px rgba(27,36,39,0.08); }
   .place-thumb .thumb-icon{ display:flex; }
-  .place-thumb svg{ width:24px; height:24px; }
   .place-info{ flex:1; min-width:0; }
   .place-name-row{ display:flex; align-items:center; gap:7px; }
-  .place-name{ font-size:14px; font-weight:700; color:var(--ink); }
+  .place-name{ font-size:12.5px; font-weight:700; color:var(--ink); transition:font-size .35s ease; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .place-row.expanded .place-name{ font-size:14px; white-space:normal; }
   .owned-badge{ font-size:9px; font-weight:700; color:#fff; background:var(--accent); padding:2px 7px; border-radius:999px; letter-spacing:0.2px; flex-shrink:0; }
-  .place-desc{ font-size:11.5px; color:var(--ink-soft); margin-top:3px; line-height:1.5; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
-  .place-dist{ font-size:10px; color:var(--ink-soft); margin-top:5px; font-weight:600; letter-spacing:0.2px; }
-  .place-chevron{ flex-shrink:0; color:var(--ink-soft); }
+  .place-desc{ font-size:11.5px; color:var(--ink-soft); margin-top:0; line-height:1.5; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; max-height:0; opacity:0; transition:max-height .35s cubic-bezier(.4,0,.2,1), opacity .25s ease, margin-top .35s ease; }
+  .place-row.expanded .place-desc{ max-height:36px; opacity:1; margin-top:3px; }
+  .place-dist{ font-size:9.5px; color:var(--ink-soft); margin-top:2px; font-weight:600; letter-spacing:0.2px; transition:margin-top .35s ease; }
+  .place-row.expanded .place-dist{ margin-top:5px; }
+  .place-chevron{ flex-shrink:0; color:var(--ink-soft); opacity:0; width:0; overflow:hidden; transition:opacity .3s ease, width .35s ease; }
+  .place-row.expanded .place-chevron{ opacity:1; width:16px; }
   .place-chevron svg{ width:16px; height:16px; }
 
   /* ---------- DETAIL VIEW ---------- */
@@ -1378,6 +1385,21 @@ function renderList(){
     </div>`;
   }).join('');
   isFirstListRender = false;
+  setupFocusObserver();
+}
+
+/* Exactly one row is "expanded" (full detail) at a time — whichever one is
+   sitting in the narrow band across the vertical centre of the screen right
+   now. Everything else collapses to just icon + name + distance. */
+let focusObserver = null;
+function setupFocusObserver(){
+  if(focusObserver) focusObserver.disconnect();
+  focusObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      entry.target.classList.toggle('expanded', entry.isIntersecting);
+    });
+  }, { root:null, rootMargin:'-48% 0px -48% 0px', threshold:0 });
+  document.querySelectorAll('.place-row').forEach(row=>focusObserver.observe(row));
 }
 
 function buildSheet(){
@@ -1408,6 +1430,7 @@ function handleMagnetLink(){
     row.style.animation = 'none';
     row.style.opacity = '1';
     row.style.transform = 'none';
+    row.classList.add('expanded');
     row.scrollIntoView({behavior:'smooth', block:'center'});
     row.classList.add('magnet-highlight');
   }, 600);
