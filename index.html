@@ -4,31 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>memotap — Dunedin</title>
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0d3f37">
-<meta name="description" content="Discover Dunedin with MemoTap — iconic places, local stories, maps, tips and nearby discoveries in one tap.">
+<meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FAF7F1">
 <style>:root{color-scheme:light;}
-/* ===== MemoTap 2.0 visual upgrade ===== */
-:root{--mt-ink:#102c29;--mt-green:#0d4b40;--mt-cream:#f7f4ed;--mt-gold:#c79a55;--mt-card:#fff;--mt-shadow:0 14px 38px rgba(16,44,41,.12)}
-body{background:linear-gradient(180deg,#f7f4ed 0%,#fbfaf6 45%,#f4f1e9 100%);color:var(--mt-ink)}
-.topbar{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:rgba(247,244,237,.86)!important;border-bottom:1px solid rgba(16,44,41,.08)!important}
-.hero{min-height:360px!important;border-radius:0 0 32px 32px!important;overflow:hidden;box-shadow:0 18px 45px rgba(16,44,41,.16)!important}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,30,28,.06),rgba(6,30,28,.62));pointer-events:none}
-.hero>*{position:relative;z-index:1}.hero-title,.hero h1{letter-spacing:-.035em!important;text-shadow:0 3px 20px rgba(0,0,0,.2)}
-.filterbar{position:sticky;top:0;z-index:15;background:rgba(247,244,237,.9)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(16,44,41,.08)!important}
-.place-list{display:grid!important;grid-template-columns:1fr!important;gap:14px!important;padding:16px!important}
-.place-row{position:relative!important;display:grid!important;grid-template-columns:118px minmax(0,1fr) 28px!important;min-height:132px!important;background:rgba(255,255,255,.9)!important;border:1px solid rgba(16,44,41,.08)!important;border-radius:22px!important;padding:10px!important;box-shadow:0 8px 24px rgba(16,44,41,.07)!important;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease!important}
-.place-row:hover{transform:translateY(-2px);box-shadow:var(--mt-shadow)!important;border-color:rgba(13,75,64,.18)!important}
-.place-thumb{width:118px!important;height:112px!important;border-radius:16px!important;overflow:hidden!important;background:linear-gradient(145deg,#dfe9e4,#c9d9d2)!important;display:flex!important;align-items:center!important;justify-content:center!important}
-.place-thumb.has-photo{background-size:cover!important;background-position:center!important}.place-thumb.has-photo:after{content:"";position:absolute}.place-thumb.has-photo .thumb-icon{display:none!important}
-.place-info{padding:6px 8px 4px 12px!important;min-width:0}.place-name{font-family:'Fraunces',Georgia,serif!important;font-size:18px!important;font-weight:700!important;line-height:1.08!important;color:#102c29!important}.place-desc{font-size:12.5px!important;line-height:1.42!important;color:#596b67!important;margin-top:6px!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.place-dist{font-size:11.5px!important;font-weight:700!important;color:#0d4b40!important;margin-top:8px!important}.place-chevron{color:#0d4b40!important}
-.sheet{border-radius:28px 28px 0 0!important;background:#fbfaf6!important}.sheet-chip.active{background:#0d4b40!important;color:#fff!important;border-color:#0d4b40!important}
-#view-detail{background:var(--mt-cream)!important}.detail-hero{min-height:300px!important;border-radius:0 0 30px 30px!important;overflow:hidden;background-size:cover!important;background-position:center!important;box-shadow:0 14px 38px rgba(16,44,41,.16)!important}.detail-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,30,27,.12),rgba(7,30,27,.72));pointer-events:none}.detail-hero>*{position:relative;z-index:1}.tabbar{background:rgba(247,244,237,.92)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.tabbtn.active{color:#0d4b40!important;border-color:#0d4b40!important}.panel,.story-card,.nearby-card,.tip-row{border-radius:18px!important}.maplink{background:#0d4b40!important;border-radius:999px!important}.ticket-link{background:#b97835!important}
-.photo-stage{border-radius:22px!important;overflow:hidden!important;box-shadow:0 10px 30px rgba(16,44,41,.12)!important}
-@media(min-width:760px){body{background:#e9eee9}.app,.view{max-width:1040px!important;margin:0 auto!important;background:var(--mt-cream);box-shadow:0 0 60px rgba(16,44,41,.12)}.place-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:22px!important}.place-row{grid-template-columns:150px minmax(0,1fr) 28px!important;min-height:158px!important}.place-thumb{width:150px!important;height:138px!important}.place-name{font-size:20px!important}.place-desc{font-size:13px!important}.hero{min-height:430px!important}.detail-hero{min-height:390px!important}}
-@media(max-width:430px){.place-row{grid-template-columns:102px minmax(0,1fr) 22px!important;min-height:122px!important}.place-thumb{width:102px!important;height:102px!important}.place-list{padding:12px!important;gap:11px!important}.place-info{padding-left:10px!important}.place-name{font-size:16.5px!important}.place-desc{font-size:11.8px!important}.place-dist{font-size:10.8px!important}}
+/* ===== MemoTap V3 enhancement layer — preserves original interactions ===== */
+.explore-switch{display:flex;gap:4px;padding:4px;background:#eef1ed;border:1px solid rgba(34,57,74,.12);border-radius:999px;margin-left:auto}
+.explore-switch button{border:0;background:transparent;color:#536064;border-radius:999px;padding:8px 13px;font:700 12px Inter,Arial;cursor:pointer}
+.explore-switch button.active{background:#173f3a;color:#fff;box-shadow:0 5px 16px rgba(23,63,58,.18)}
+.list-toolbar-v3{display:flex;align-items:center;gap:10px;margin:8px 0 16px}
+.place-row{overflow:hidden;position:relative}
+.place-thumb{width:94px!important;min-width:94px!important;height:86px!important;border-radius:14px!important;overflow:hidden!important;background:#e9ece8!important;box-shadow:inset 0 0 0 1px rgba(34,57,74,.08)}
+.place-thumb img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
+.place-row:hover .place-thumb img{transform:scale(1.045)}
+.place-thumb .thumb-icon{display:none!important}
+.place-row.magnet-highlight{border:2px solid #D9A441!important;box-shadow:0 0 0 4px rgba(217,164,65,.16),0 12px 28px rgba(34,57,74,.12)!important}
+.place-row.magnet-highlight:before{content:'YOUR MEMOTAP';position:absolute;right:42px;top:7px;background:#F2C96D;color:#243333;font:800 8px Inter,Arial;letter-spacing:.09em;padding:4px 7px;border-radius:999px;z-index:3}
+#map-view-v3{display:none;margin:0 -2px 28px}
+#map-view-v3.active{display:block;animation:v3fade .45s ease both}
+#place-list.v3-hidden{display:none}
+@keyframes v3fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.map-shell-v3{position:relative;min-height:590px;border-radius:24px;overflow:hidden;background:#0c3e3d url('assets/map-art.jpg') center/cover no-repeat;box-shadow:0 18px 45px rgba(15,48,45,.2);border:1px solid rgba(255,255,255,.4)}
+.map-shell-v3:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,30,29,.03),rgba(5,30,29,.18));pointer-events:none}
+.map-title-v3{position:absolute;left:18px;top:18px;z-index:4;background:rgba(255,252,245,.93);backdrop-filter:blur(10px);padding:12px 15px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.map-title-v3 strong{display:block;font:700 17px Georgia,serif;color:#193b39}.map-title-v3 span{font:600 10px Inter;color:#687577}
+.map-marker-v3{position:absolute;z-index:5;width:30px;height:30px;border-radius:50%;border:2px solid #fff;background:#173f3a;color:#fff;display:grid;place-items:center;font:800 9px Inter;box-shadow:0 5px 15px rgba(0,0,0,.25);cursor:pointer;transform:translate(-50%,-50%);transition:.2s}
+.map-marker-v3:hover{transform:translate(-50%,-50%) scale(1.15)}
+.map-marker-v3.owned{width:40px;height:40px;background:#D9A441;box-shadow:0 0 0 8px rgba(242,201,109,.23),0 6px 20px rgba(0,0,0,.28);animation:magnetPulse 1.7s infinite}
+@keyframes magnetPulse{50%{box-shadow:0 0 0 14px rgba(242,201,109,.05),0 6px 20px rgba(0,0,0,.28)}}
+.map-preview-v3{position:absolute;z-index:6;left:18px;right:18px;bottom:18px;display:none;grid-template-columns:92px 1fr auto;gap:12px;align-items:center;background:rgba(255,252,245,.96);backdrop-filter:blur(12px);border-radius:17px;padding:10px;box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.map-preview-v3.active{display:grid}.map-preview-v3 img{width:92px;height:68px;border-radius:11px;object-fit:cover}.map-preview-v3 b{display:block;color:#22394A;margin-bottom:4px}.map-preview-v3 small{color:#6c7778}.map-preview-v3 button{border:0;background:#173f3a;color:white;border-radius:50%;width:38px;height:38px;font-size:18px}
+.detail-hero{overflow:visible!important}.detail-title{line-height:1.08!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
+@media(max-width:560px){.place-thumb{width:82px!important;min-width:82px!important;height:82px!important}.place-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.map-shell-v3{min-height:520px}.map-title-v3{left:12px;top:12px}.map-preview-v3{left:10px;right:10px;bottom:10px}.explore-switch button{padding:7px 10px}}
 
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -229,7 +236,9 @@ body{background:linear-gradient(180deg,#f7f4ed 0%,#fbfaf6 45%,#f4f1e9 100%);colo
 
 
 
+    <div class="list-toolbar-v3"><div class="explore-switch" aria-label="Explore view"><button id="v3-list-btn" class="active" onclick="setExploreView('list')">Places</button><button id="v3-map-btn" onclick="setExploreView('map')">Map</button></div></div>
     <div class="place-list" id="place-list"></div>
+    <div id="map-view-v3"><div class="map-shell-v3" id="map-shell-v3"><div class="map-title-v3"><strong>Explore Dunedin</strong><span>Tap a marker · centred on The Octagon</span></div><div class="map-preview-v3" id="map-preview-v3"></div></div></div>
   </div>
 
   <!-- filter sheet -->
@@ -1323,16 +1332,6 @@ const EXTRA = {
   }
 };
 
-const PLACE_IMAGES = {
-  railway:'assets/images/railway.webp',
-  larnach:'assets/images/larnach.webp',
-  tunnel_beach:'assets/images/tunnel_beach.webp',
-  baldwin:'assets/images/baldwin.webp',
-  moeraki:'assets/images/moeraki.webp',
-  st_clair:'assets/images/st_clair.webp',
-  peninsula_start:'assets/images/peninsula_start.webp',
-  signal_hill:'assets/images/signal_hill.webp'
-};
 const SWATCH = {heritage:'#22394A', wildlife:'#2F6B5E', beaches:'#2C6E8E', geology:'#A65A3C', museums:'#A97A2E', gardens:'#5C7A4A', city_culture:'#D9601F'};
 function placeholderPhoto(name, color, tag){
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500'>
@@ -1343,16 +1342,17 @@ function placeholderPhoto(name, color, tag){
   </svg>`;
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
+const V3_PHOTOS = {
+  railway:'assets/railway.jpg', larnach:'assets/larnach.jpg', tunnel_beach:'assets/tunnel_beach.jpg', baldwin:'assets/baldwin.jpg',
+  moeraki:'assets/moeraki.jpg', st_clair:'assets/st_clair.jpg', peninsula_start:'assets/peninsula_start.jpg', signal_hill:'assets/signal_hill.jpg'
+};
+const V3_CAT_FALLBACK={heritage:'assets/railway.jpg',wildlife:'assets/peninsula_start.jpg',beaches:'assets/st_clair.jpg',geology:'assets/moeraki.jpg',museums:'assets/railway.jpg',gardens:'assets/larnach.jpg',city_culture:'assets/signal_hill.jpg'};
+function photoFor(p){ return V3_PHOTOS[p.id] || V3_CAT_FALLBACK[p.cats[0]]; }
 function galleryFor(p){
   const extra = EXTRA[p.id];
   if(extra && extra.gallery && extra.gallery.length) return extra.gallery;
-  const c = SWATCH[p.cats[0]];
-  const generated = PLACE_IMAGES[p.id];
-  return generated ? [generated, placeholderPhoto(p.name,c,'MEMOTAP STORY'), placeholderPhoto(p.name,c,'LOCAL DISCOVERY')] : [
-    placeholderPhoto(p.name, c, 'MEMOTAP STORY'),
-    placeholderPhoto(p.name, c, 'LOCAL DISCOVERY'),
-    placeholderPhoto(p.name, c, 'MEMORY SPOT')
-  ];
+  const hero = photoFor(p);
+  return [hero, hero, hero];
 }
 const CAT_COLOR = SWATCH;
 const CAT_SOFT = { heritage:'rgba(34,57,74,0.55)', wildlife:'rgba(47,107,94,0.55)', beaches:'rgba(44,110,142,0.55)', geology:'rgba(166,90,60,0.55)', museums:'rgba(169,122,46,0.55)', gardens:'rgba(92,122,74,0.55)', city_culture:'rgba(217,96,31,0.55)' };
@@ -1398,7 +1398,7 @@ function renderList(){
     const staggerStyle = isFirstListRender ? `style="animation-delay:${0.7 + Math.min(i,14)*0.09}s"` : '';
     const staggerClass = isFirstListRender ? 'row-fade' : '';
     return `<div class="place-row ${staggerClass}" ${staggerStyle} id="row-${p.id}" onclick="openDetail('${p.id}')">
-      <div class="place-thumb ${PLACE_IMAGES[p.id]?'has-photo':''}" ${PLACE_IMAGES[p.id]?`style="background-image:linear-gradient(180deg,rgba(8,35,31,.02),rgba(8,35,31,.12)),url('${PLACE_IMAGES[p.id]}')"`:``}><span class="thumb-icon">${CAT_ICON[primary]}</span></div>
+      <div class="place-thumb"><img src="${photoFor(p)}" alt="${p.name}" loading="lazy"></div>
       <div class="place-info">
         <div class="place-name-row">
           <div class="place-name">${p.name}</div>
@@ -1505,7 +1505,7 @@ function openDetail(id, fromPopstate){
   }
 
   const hero = document.getElementById('detail-hero');
-  hero.style.background = PLACE_IMAGES[p.id] ? `linear-gradient(180deg,rgba(7,30,27,.08),rgba(7,30,27,.62)), url('${PLACE_IMAGES[p.id]}') center/cover no-repeat` : `linear-gradient(160deg, ${SWATCH[p.cat]}dd, ${SWATCH[p.cat]})`;
+  hero.style.background = `linear-gradient(160deg, ${SWATCH[p.cat]}dd, ${SWATCH[p.cat]})`;
   const titleEl = document.getElementById('detail-title');
   titleEl.textContent = p.name;
   fitTitleToWidth(titleEl);
@@ -1655,6 +1655,31 @@ function switchTab(name){
   document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
 }
+
+/* ===== V3 interactive map prototype ===== */
+function setExploreView(mode){
+  const list=document.getElementById('place-list'), map=document.getElementById('map-view-v3');
+  const lb=document.getElementById('v3-list-btn'), mb=document.getElementById('v3-map-btn');
+  if(mode==='map'){ list.classList.add('v3-hidden'); map.classList.add('active'); lb.classList.remove('active'); mb.classList.add('active'); renderV3Map(); }
+  else { list.classList.remove('v3-hidden'); map.classList.remove('active'); lb.classList.add('active'); mb.classList.remove('active'); }
+}
+function renderV3Map(){
+  const shell=document.getElementById('map-shell-v3'); if(!shell || shell.dataset.ready) return; shell.dataset.ready='1';
+  const lats=PLACES.map(p=>p.lat), lons=PLACES.map(p=>p.lon); const minLat=Math.min(...lats),maxLat=Math.max(...lats),minLon=Math.min(...lons),maxLon=Math.max(...lons);
+  PLACES.forEach((p,i)=>{
+    const b=document.createElement('button'); b.className='map-marker-v3'+(p.owned?' owned':''); b.title=p.name; b.textContent=i+1;
+    let x=12+76*((p.lon-minLon)/(maxLon-minLon)); let y=14+70*(1-(p.lat-minLat)/(maxLat-minLat));
+    /* compress the distant outliers so Dunedin remains readable in the prototype */
+    if(p.band==='b4'){ x=82-(i%3)*12; y=15+(i%4)*9; }
+    b.style.left=x+'%'; b.style.top=y+'%'; b.onclick=(e)=>{e.stopPropagation();showV3MapPreview(p)}; shell.appendChild(b);
+  });
+}
+function showV3MapPreview(p){
+  const box=document.getElementById('map-preview-v3');
+  box.innerHTML=`<img src="${photoFor(p)}" alt="${p.name}"><div><b>${p.name}</b><small>${p.distLabel} · ${p.timeLabel}</small></div><button aria-label="Open ${p.name}" onclick="openDetail('${p.id}')">›</button>`;
+  box.classList.add('active');
+}
+
 </script>
 </body>
 </html>
